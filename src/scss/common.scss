@@ -1,0 +1,66 @@
+// Заголовки, загальні БЕМ блоки та інше...
+// 
+.title{
+  transition: all 0.8s;
+  color: #fff;
+  font-family: "Lexend Deca"; 
+  @include adaptiveValue("font-size", 40, 24, 0, 1026, 320);
+  font-style: normal;
+  line-height: 120%; /* 48/48 */
+  letter-spacing: rem(-1.5);
+  &_small{
+    @include adaptiveValue("font-size", 30, 22, 0, 1026, 320);
+  }
+  &_big{
+    @include adaptiveValue("font-size", 60, 36, 0, 1440, 320);
+    line-height: 1.1; 
+  }
+}
+
+.text{
+  line-height: 1.5;
+  display: inline-block;
+
+}
+
+.book {
+  color: #FFFFFF;      
+  letter-spacing: rem(-0.4);
+  font-weight: 500;
+  position: relative;
+  padding-top: rem(5);
+  padding-bottom: rem(5);
+  padding-left: rem(3);
+  padding-right: rem(3);
+  line-height: 1.31;
+  &_red{
+    color: $redColor;
+  &:hover{
+    color: #fff;
+  }  
+  }
+  span{
+    position: relative;
+    z-index: 2;
+    }
+  &::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #f95454;
+    border-radius: 5px;
+    height: rem(2);
+    width: 100%;
+    transition: all 0.3s;
+  }
+  @media (any-hover: hover) {
+    &:hover{
+      &::after{
+      top: 0;
+      height: 100%;
+      }
+    }
+    
+  }
+}
