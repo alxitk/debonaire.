@@ -20,13 +20,31 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Debug src checksum
+        run: |
+          md5sum src/img/main/main-1.jpg
+          file src/img/main/main-1.jpg
+          echo "::notice::SRC $(md5sum src/img/main/main-1.jpg)"
+
       - uses: actions/setup-node@v4
         with:
           node-version: 20
 
       - run: npm install --legacy-peer-deps
 
+      - name: Debug node/npm checksum after install
+        run: |
+          echo "::notice::NODE $(node -v) NPM $(npm -v)"
+          md5sum src/img/main/main-1.jpg
+          echo "::notice::AFTER_INSTALL $(md5sum src/img/main/main-1.jpg)"
+
       - run: npm run cibuild
+
+      - name: Debug dist checksum
+        run: |
+          md5sum dist/img/main/main-1.jpg
+          file dist/img/main/main-1.jpg
+          echo "::notice::DIST $(md5sum dist/img/main/main-1.jpg) $(file -b dist/img/main/main-1.jpg)"
 
       - uses: actions/upload-pages-artifact@v3
         with:
