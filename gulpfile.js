@@ -10,6 +10,7 @@ global.app = {
 	isBuild: process.argv.includes('--build'),
 	isDev: !process.argv.includes('--build'),
 	isWebP: !process.argv.includes('--nowebp'),
+	isImagemin: !process.argv.includes('--noimagemin'),
 	isFontsReW: process.argv.includes('--rewrite'),
 	gulp: gulp,
 	path: path,
